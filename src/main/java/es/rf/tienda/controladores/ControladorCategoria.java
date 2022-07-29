@@ -17,7 +17,7 @@ public class ControladorCategoria implements CategoriaDAO {
 	final String SELECT_ALL = "SELECT * FROM CATEGORIA";
 	final String SELECT_CATEGORIAS = "SELECT * FROM CATEGORIA WHERE ";
 	final String INSERT_CATEGORIA = "INSERT INTO CATEGORIA VALUES ";
-	final String UPDATE_CATEGORIA = "UPDATE * FROM CATEGORIA WHERE ID_CATEGORIA = ";
+	final String UPDATE_CATEGORIA = "UPDATE CATEGORIA SET ";
 	final String DELETE_CATEGORIA = "DELETE FROM CATEGORIA WHERE ID_CATEGORIA = ";
 
 	@Override
@@ -40,18 +40,29 @@ public class ControladorCategoria implements CategoriaDAO {
 				return true;
 
 		} catch (Exception e) {
-			
-			//ErrorMessages.mostrarMensajeError(e.getMessage());
+
+			// ErrorMessages.mostrarMensajeError(e.getMessage());
 		}
 		return false;
 
 	}
 
 	@Override
-	public boolean editar(int id, Categoria c) {
+	public boolean editar(Categoria c) {
 		String query = this.UPDATE_CATEGORIA;
-		if (c.isValid()) {
-			query = query + "(" + c.getId_categoria() + ",'" + c.getCat_nombre() + "','" + c.getId_categoria() + "')";
+		try {
+			if (c.isValid())
+				query = query + "CAT_NOMBRE = '" + c.getCat_nombre() + "', CAT_DESCRIPCION = '" + c.getCat_descripcion()
+						+ "' WHERE ID_CATEGORIA = " + c.getId_categoria();
+
+			int num = JDBC.getInstance().Ejecutar(query);
+
+			if (num != 0)
+				return true;
+
+		} catch (Exception e) {
+
+			// ErrorMessages.mostrarMensajeError(e.getMessage());
 		}
 		return false;
 	}

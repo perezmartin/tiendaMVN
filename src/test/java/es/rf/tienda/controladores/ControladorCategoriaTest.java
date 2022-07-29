@@ -15,7 +15,8 @@ public class ControladorCategoriaTest {
 		System.out.println(cc.crear(null));
 		System.out.println("-----------------------------------");
 		System.out.println("Editar Categoria: ");
-		// System.out.println(cc.editar(0, null));
+		System.out.println(cc.editar(new Categoria(9999,"asd","asd")));
+		System.out.println(cc.editar(null));
 		System.out.println("-----------------------------------");
 		System.out.println("Eliminar Categoria: ");
 		// System.out.println(cc.eliminar(0));

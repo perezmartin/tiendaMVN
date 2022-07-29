@@ -10,7 +10,7 @@ public interface CategoriaDAO extends InterfacesDAO<Categoria>{
 
 	boolean crear(Categoria c);
 
-	boolean editar(int id, Categoria c);
+	boolean editar(Categoria c);
 
 	boolean eliminar(int id);
 

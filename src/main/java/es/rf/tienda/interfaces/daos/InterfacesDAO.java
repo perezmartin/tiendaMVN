@@ -8,7 +8,7 @@ public interface InterfacesDAO<T> {
 
 	boolean crear(T t);
 
-	boolean editar(int id, T t);
+	boolean editar(T t);
 
 	boolean eliminar(int id);
 
