@@ -55,6 +55,10 @@ public class VistaCategoria extends JFrame {
 
 		} else {
 
+			this.input_cat_id.setText("");
+			this.input_cat_nombre.setText("");
+			this.textoDescripcion.setText("");
+			
 			this.setTitle("Agregar Categoria");
 			this.botonAceptar.setText("Agregar");
 
@@ -68,9 +72,6 @@ public class VistaCategoria extends JFrame {
 
 		this.botonAceptar.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		this.botonAceptar.setBackground(Color.GREEN);
-
-		this.textoDescripcion.setRows(4);
-		JScrollPane input_cat_descripcion = new JScrollPane(textoDescripcion);
 
 		this.panelElementos.setLayout(gridElementos);
 
@@ -108,7 +109,9 @@ public class VistaCategoria extends JFrame {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
+
 				vista.setVisible(true);
+
 			}
 		});
 	}
@@ -124,6 +127,8 @@ public class VistaCategoria extends JFrame {
 	private JTextField input_cat_id = new JTextField();
 	private JTextField input_cat_nombre = new JTextField();
 	private JTextArea textoDescripcion = new JTextArea();
+
+	private JScrollPane input_cat_descripcion = new JScrollPane(textoDescripcion);
 
 	private JPanel panelBotones = new JPanel();
 	private JPanel panelElementos = new JPanel();

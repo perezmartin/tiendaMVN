@@ -95,5 +95,4 @@ public class ControladorCategoria implements CategoriaDAO {
 		return lista;
 
 	}
-
 }
