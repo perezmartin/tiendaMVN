@@ -4,12 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 
 import javax.swing.JList;
 
-import es.rf.tienda.dominio.Categoria;
-import es.rf.tienda.dominio.Usuario;
 import es.rf.tienda.vistas.VistaCategoria;
 import es.rf.tienda.vistas.VistaListadoCategorias;
 import es.rf.tienda.vistas.VistaListadoUsuarios;
