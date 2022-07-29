@@ -21,12 +21,12 @@ public class ControladorCategoria implements CategoriaDAO {
 	final String DELETE_CATEGORIA = "DELETE FROM CATEGORIA WHERE ID_CATEGORIA = ";
 
 	@Override
-	public List<Categoria> listarTodo() {
+	public List<Categoria> listarTodo() throws Exception {
 		return generarListadoCategorias(this.SELECT_ALL);
 	}
 
 	@Override
-	public boolean crear(Categoria c) {
+	public boolean crear(Categoria c) throws Exception {
 		String query = this.INSERT_CATEGORIA;
 
 		try {
@@ -40,7 +40,7 @@ public class ControladorCategoria implements CategoriaDAO {
 				return true;
 
 		} catch (Exception e) {
-
+			throw (new Exception("Error! " + e.getMessage()));
 			// ErrorMessages.mostrarMensajeError(e.getMessage());
 		}
 		return false;
@@ -48,7 +48,7 @@ public class ControladorCategoria implements CategoriaDAO {
 	}
 
 	@Override
-	public boolean editar(Categoria c) {
+	public boolean editar(Categoria c) throws Exception {
 		String query = this.UPDATE_CATEGORIA;
 		try {
 			if (c.isValid())
@@ -61,20 +61,33 @@ public class ControladorCategoria implements CategoriaDAO {
 				return true;
 
 		} catch (Exception e) {
-
+			throw (new Exception("Error! " + e.getMessage()));
 			// ErrorMessages.mostrarMensajeError(e.getMessage());
 		}
 		return false;
 	}
 
 	@Override
-	public boolean eliminar(int id) {
+	public boolean eliminar(int id) throws Exception {
 		String query = this.DELETE_CATEGORIA;
+		try {
+			if (id != 0)
+				query = query + id;
+
+			int num = JDBC.getInstance().Ejecutar(query);
+
+			if (num != 0)
+				return true;
+
+		} catch (Exception e) {
+			throw (new Exception("Error! " + e.getMessage()));
+			// ErrorMessages.mostrarMensajeError(e.getMessage());
+		}
 		return false;
 	}
 
 	@Override
-	public List<Categoria> buscar(Categoria c) {
+	public List<Categoria> buscar(Categoria c) throws Exception {
 
 		String query = this.SELECT_CATEGORIAS;
 
@@ -88,7 +101,7 @@ public class ControladorCategoria implements CategoriaDAO {
 		return generarListadoCategorias(query);
 	}
 
-	private List<Categoria> generarListadoCategorias(String query) {
+	private List<Categoria> generarListadoCategorias(String query) throws Exception {
 		List<Categoria> lista = new ArrayList<Categoria>();
 
 		try {
@@ -100,7 +113,7 @@ public class ControladorCategoria implements CategoriaDAO {
 
 			}
 		} catch (Exception e) {
-			ErrorMessages.mostrarMensajeError(e.getMessage());
+			throw (new Exception("Error! " + e.getMessage()));
 		}
 
 		return lista;

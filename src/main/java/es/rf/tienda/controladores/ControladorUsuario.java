@@ -10,9 +10,9 @@ import es.rf.tienda.dominio.Usuario;
 import es.rf.tienda.util.ErrorMessages;
 import es.rf.tienda.util.JDBC;
 
-public class ControladorUsuario{
+public class ControladorUsuario {
 
-	private List<Usuario> generarListadoUsuarios(String query) {
+	private List<Usuario> generarListadoUsuarios(String query) throws Exception {
 		List<Usuario> lista = new ArrayList<Usuario>();
 
 		try {
@@ -26,13 +26,12 @@ public class ControladorUsuario{
 
 			}
 		} catch (Exception e) {
-			ErrorMessages.mostrarMensajeError(e.getMessage());
-			e.printStackTrace();
+			throw (new Exception("Error! " + e.getMessage()));
+
 		}
 
 		return lista;
 
 	}
-
 
 }

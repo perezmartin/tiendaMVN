@@ -15,7 +15,7 @@ public class JDBC {
 	private static final String USUARIO = "alumno";
 	private static final String PASSWORD = "Curso2022";
 
-	public static JDBC getInstance() {
+	public static JDBC getInstance() throws Exception {
 		if (instancia == null) {
 			instancia = new JDBC();
 		}
@@ -23,13 +23,13 @@ public class JDBC {
 
 	}
 
-	private JDBC() {
+	private JDBC() throws Exception {
 
 		this.conexion();
 
 	}
 
-	private void conexion() {
+	private void conexion() throws Exception{
 		try {
 
 			Class.forName(JDBC_DRIVER);
@@ -37,8 +37,7 @@ public class JDBC {
 			conn = DriverManager.getConnection(URL, USUARIO, PASSWORD);
 
 		} catch (Exception e) {
-			ErrorMessages.mostrarMensajeError(ErrorMessages.CONNERR_001);
-			return;
+			throw (new Exception("Error! : " + e.getMessage()));
 		}
 	}
 

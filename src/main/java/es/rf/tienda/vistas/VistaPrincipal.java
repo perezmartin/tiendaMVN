@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 public class VistaPrincipal extends JFrame {
@@ -84,6 +85,14 @@ public class VistaPrincipal extends JFrame {
 
 	public void clickEnBotonNuevaDireccion(ActionListener al) {
 		this.botonNuevaDireccion.addActionListener(al);
+	}
+
+	public void mostrarMensajeError(String msj) {
+		JOptionPane.showMessageDialog(this, msj, "Error", JOptionPane.ERROR_MESSAGE);
+	}
+
+	public void mostrarMensajeExitoso(String msj) {
+		JOptionPane.showMessageDialog(this, msj);
 	}
 
 	private JButton botonListadoUsuarios = new JButton();

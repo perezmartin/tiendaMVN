@@ -4,15 +4,15 @@ import java.util.List;
 
 import es.rf.tienda.dominio.Categoria;
 
-public interface CategoriaDAO extends InterfacesDAO<Categoria>{
-	
-	List<Categoria> listarTodo();
+public interface CategoriaDAO extends InterfacesDAO<Categoria> {
 
-	boolean crear(Categoria c);
+	List<Categoria> listarTodo() throws Exception;
 
-	boolean editar(Categoria c);
+	boolean crear(Categoria c) throws Exception;
 
-	boolean eliminar(int id);
+	boolean editar(Categoria c) throws Exception;
 
-	List<Categoria> buscar(Categoria c);
+	boolean eliminar(int id) throws Exception;
+
+	List<Categoria> buscar(Categoria c) throws Exception;
 }

@@ -1,7 +1,5 @@
 package es.rf.tienda.util;
 
-import javax.swing.JOptionPane;
-
 /* *****************************************************
  * NOMBRE: ErrorMessages.java
  * 
@@ -29,9 +27,5 @@ public class ErrorMessages {
 	
 	public final static String CONNERR_001 = "Error con la Conexion a la base de datos";
 	public final static String CONNERR_002 = "Error con la Query de la base de datos";
-
-	public static void mostrarMensajeError(String msj) {
-		JOptionPane.showMessageDialog(null, msj);
-	}
 
 }
