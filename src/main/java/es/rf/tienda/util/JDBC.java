@@ -74,7 +74,6 @@ public class JDBC {
 			retorno = stm.executeQuery(sql);
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw (new Exception("error en " + sql));
 		} finally {
 			// closeStatement(stm);

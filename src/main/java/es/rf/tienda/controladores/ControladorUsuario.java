@@ -10,7 +10,7 @@ import es.rf.tienda.dominio.Usuario;
 import es.rf.tienda.util.ErrorMessages;
 import es.rf.tienda.util.JDBC;
 
-public class ControladorUsuario implements Controlador<Usuario> {
+public class ControladorUsuario{
 
 	private List<Usuario> generarListadoUsuarios(String query) {
 		List<Usuario> lista = new ArrayList<Usuario>();
@@ -34,48 +34,5 @@ public class ControladorUsuario implements Controlador<Usuario> {
 
 	}
 
-	@Override
-	public Usuario leer(Usuario obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Usuario> leerTodos() {
-
-		String query = "select * from usuario";
-
-		return this.generarListadoUsuarios(query);
-	}
-
-	@Override
-	public List<Usuario> leerSQL(String sql) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean actualizar(Usuario obj) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean borrar(Usuario obj) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean grabar(Usuario obj) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public Map<String, String> obtenerSelect() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

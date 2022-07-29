@@ -18,6 +18,10 @@ public class Categoria {
 
 	private String cat_descripcion; // descripcion de la categoria
 
+	public Categoria() {
+
+	}
+
 	public Categoria(int id, String nombre, String descripcion) {
 		this.setId_categoria(id);
 		this.setCat_nombre(nombre);
@@ -26,7 +30,7 @@ public class Categoria {
 	}
 
 	public boolean isValid() {
-		return !Validator.isVacio(cat_nombre) && id_categoria > 0;
+		return !Validator.isVacio(cat_nombre) && id_categoria > 0 && !Validator.isVacio(cat_descripcion);
 	}
 
 	/**
