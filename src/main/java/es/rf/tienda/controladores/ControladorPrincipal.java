@@ -30,7 +30,7 @@ public class ControladorPrincipal {
 				v.dispose();
 
 				VistaListadoCategorias vListadoCategorias = new VistaListadoCategorias();
-				vListadoCategorias.agregarListado(cc.leerTodos());
+				vListadoCategorias.agregarListado(cc.listarTodo());
 				vListadoCategorias.volverALaVistaAnterior(v);
 				vListadoCategorias.iniciarVista();
 			}
