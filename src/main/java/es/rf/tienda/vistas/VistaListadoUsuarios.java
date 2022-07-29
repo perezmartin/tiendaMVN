@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
@@ -42,7 +43,7 @@ public class VistaListadoUsuarios extends JFrame {
 		});
 	}
 
-	public void agregarListado(ArrayList<Usuario> users) {
+	public void agregarListado(List<Usuario> users) {
 		DefaultListModel<Usuario> lista = new DefaultListModel<Usuario>();
 		this.listaUsuarios.setModel(lista);
 
@@ -76,8 +77,6 @@ public class VistaListadoUsuarios extends JFrame {
 		this.add(panelTop, BorderLayout.NORTH);
 		this.add(scrollPanel, BorderLayout.CENTER);
 		this.add(panelBot, BorderLayout.SOUTH);
-
-		this.setVisible(true);
 
 	}
 

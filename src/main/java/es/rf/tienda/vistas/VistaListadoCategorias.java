@@ -60,7 +60,7 @@ public class VistaListadoCategorias extends JFrame {
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 
-		this.botonAgregar.setText("Agregar Nueva Categoria");
+		this.botonNueva.setText("Agregar Nueva Categoria");
 		this.botonEliminarSeleccionados.setText("Eliminar Seleccionados");
 
 		this.label.setText("ID || NOMBRE");
@@ -71,7 +71,7 @@ public class VistaListadoCategorias extends JFrame {
 
 		panelCentro.add(listaCategorias);
 
-		panelBot.add(botonAgregar);
+		panelBot.add(botonNueva);
 		panelBot.add(botonEliminarSeleccionados);
 
 		this.add(panelTop, BorderLayout.NORTH);
@@ -82,8 +82,8 @@ public class VistaListadoCategorias extends JFrame {
 
 	}
 
-	public void clickEnBotonAceptar(ActionListener al) {
-		this.botonAgregar.addActionListener(al);
+	public void clickEnBotonNueva(ActionListener al) {
+		this.botonNueva.addActionListener(al);
 	}
 
 	public void clickEnEliminar(ActionListener al) {
@@ -94,13 +94,18 @@ public class VistaListadoCategorias extends JFrame {
 		this.listaCategorias.addMouseListener(al);
 	}
 
+	public int[] obtenerSeleccionados() {
+		return this.listaCategorias.getSelectedIndices();
+
+	}
+
 	private JPanel panelTop = new JPanel();
 	private JPanel panelBot = new JPanel();
 	private JPanel panelCentro = new JPanel();
 
 	private JScrollPane scrollPanel = new JScrollPane(panelCentro);
 
-	private JButton botonAgregar = new JButton();
+	private JButton botonNueva = new JButton();
 	private JButton botonEliminarSeleccionados = new JButton();
 
 	private JLabel label = new JLabel();

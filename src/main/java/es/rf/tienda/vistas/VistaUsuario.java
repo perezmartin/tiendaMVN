@@ -56,6 +56,13 @@ public class VistaUsuario extends JFrame {
 
 		} else {
 
+			this.input_user_id.setText("");
+			this.input_user_nombre.setText("");
+			this.input_user_email.setText("");
+			this.input_tipo_id.setText("");
+			this.input_user_dni.setText("");
+			this.input_user_fecAlta.setText("");
+			
 			this.setTitle("Agregar Usuario");
 			this.botonAceptar.setText("Agregar");
 

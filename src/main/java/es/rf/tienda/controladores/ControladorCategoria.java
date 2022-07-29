@@ -33,8 +33,19 @@ public class ControladorCategoria implements Controlador<Categoria> {
 
 	@Override
 	public Categoria leer(Categoria obj) {
-		// TODO Auto-generated method stub
-		return null;
+
+		String query = "";
+		Categoria c = null;
+		
+		try {
+			ResultSet rs = JDBC.getInstance().EjecutarQuery(query);
+			while (rs.next()) {
+				 c = new Categoria(rs.getInt(1), rs.getString(2), rs.getString(3));
+			}
+		} catch (Exception e) {
+			ErrorMessages.mostrarMensajeError(e.getMessage());
+		}
+		return c;
 	}
 
 	@Override

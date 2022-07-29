@@ -8,16 +8,32 @@ public class Usuario {
 	private String user_nombre;
 	private String user_email;
 	private String user_pass;
-	private int id_tipo;
 	private String user_dni;
-	private Date user_fecAlta;
 
+	private int id_tipo;
+
+	private Date user_fecAlta;
 	private Date user_fecConfirmacion;
+
 	private Direccion user_pago;
 	private Direccion user_envio;
 
 	public Usuario() {
 		this.setUser_fecAlta(new Date(System.currentTimeMillis()));
+		this.setUser_fecConfirmacion(new Date(System.currentTimeMillis()));
+	}
+	
+	public Usuario(int id, String nom, String email, String pass, String dni, int idTipo) {
+
+		this.setId_usuario(id);
+		this.setUser_nombre(nom);
+		this.setUser_email(email);
+		this.setUser_pass(pass);
+		this.setUser_dni(dni);
+		this.setId_tipo(idTipo);
+		this.setUser_fecAlta(new Date(System.currentTimeMillis()));
+		this.setUser_fecConfirmacion(new Date(System.currentTimeMillis()));
+
 	}
 
 	public int getId_usuario() {
