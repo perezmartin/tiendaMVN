@@ -47,6 +47,7 @@ public class VistaCategoria extends JFrame {
 			this.botonEliminar.setBackground(Color.RED);
 
 			this.input_cat_id.setText(categoria.getId_categoria() + "");
+			this.input_cat_id.setEditable(false);
 			this.input_cat_nombre.setText(categoria.getCat_nombre());
 			this.textoDescripcion.setText(categoria.getCat_descripcion());
 
@@ -54,11 +55,11 @@ public class VistaCategoria extends JFrame {
 			this.panelBotones.add(botonEliminar);
 
 		} else {
-
+			
 			this.input_cat_id.setText("");
 			this.input_cat_nombre.setText("");
 			this.textoDescripcion.setText("");
-			
+
 			this.setTitle("Agregar Categoria");
 			this.botonAceptar.setText("Agregar");
 
@@ -89,6 +90,21 @@ public class VistaCategoria extends JFrame {
 
 	}
 
+	public Categoria getCategoria() throws Exception {
+
+		Categoria c = new Categoria();
+
+		try {
+			c.setId_categoria(Integer.parseInt(input_cat_id.getText()));
+			c.setCat_nombre(input_cat_nombre.getText());
+			c.setCat_descripcion(textoDescripcion.getText());
+		} catch (Exception e) {
+			throw new Exception("Error al convertir");
+		}
+
+		return c;
+	}
+
 	public void setCategoria(Categoria c) {
 		this.categoria = c;
 	}
@@ -109,7 +125,7 @@ public class VistaCategoria extends JFrame {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-
+				
 				vista.setVisible(true);
 
 			}

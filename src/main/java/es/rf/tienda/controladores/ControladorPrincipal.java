@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JList;
 
+import es.rf.tienda.dominio.Categoria;
 import es.rf.tienda.vistas.VistaCategoria;
 import es.rf.tienda.vistas.VistaListadoCategorias;
 import es.rf.tienda.vistas.VistaListadoUsuarios;
@@ -43,11 +44,17 @@ public class ControladorPrincipal {
 				v.dispose();
 
 				vListadoCategorias.volverALaVistaAnterior(v);
+				try {
+					vListadoCategorias.agregarListado(cc.listarTodo());
+				} catch (Exception e1) {
+					v.mostrarMensajeError(e1.getMessage());
+				}
 				vListadoCategorias.clickEnListadoCategorias(new ClickListadoCategorias());
+
 				vListadoCategorias.clickEnBotonNueva(new ClickEnNuevaCategoria());
 				vListadoCategorias.clickEnEliminar(new ClickEnEliminar());
 				vListadoCategorias.iniciarVista();
-				
+
 			}
 
 		});
@@ -58,7 +65,7 @@ public class ControladorPrincipal {
 			public void actionPerformed(ActionEvent e) {
 				v.dispose();
 
-				//vListadoUsuarios.agregarListado();
+				// vListadoUsuarios.agregarListado();
 				vListadoUsuarios.volverALaVistaAnterior(v);
 				vListadoUsuarios.iniciarVista();
 			}
@@ -100,9 +107,15 @@ public class ControladorPrincipal {
 		public void mouseClicked(MouseEvent e) {
 
 			if (e.getClickCount() == 2) {
-				JList lista = (JList) e.getComponent();
-				System.out.println(lista.getSelectedValue());
-				System.out.println(lista.getSelectedIndex());
+				JList<Categoria> lista = (JList<Categoria>) e.getComponent();
+
+				vCategoria.volverALaVistaAnterior(vListadoCategorias);
+				
+				vCategoria.setCategoria(new Categoria(lista.getSelectedValue().getId_categoria(),
+						lista.getSelectedValue().getCat_nombre(), lista.getSelectedValue().getCat_descripcion()));
+				
+				vCategoria.clickEnBotonAceptar(new ClickEnEditar());
+				vCategoria.iniciarVista();
 			}
 
 		}
@@ -140,6 +153,7 @@ public class ControladorPrincipal {
 			vListadoCategorias.dispose();
 
 			vCategoria.volverALaVistaAnterior(vListadoCategorias);
+			vCategoria.setCategoria(null);
 			vCategoria.iniciarVista();
 		}
 
@@ -154,4 +168,21 @@ public class ControladorPrincipal {
 
 	}
 
+	private class ClickEnEditar implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			try {
+				if (cc.editar(vCategoria.getCategoria())) {
+					v.mostrarMensajeExitoso("Categoria Editada!");
+				} else {
+					v.mostrarMensajeError("No se puedo editar la categoria!");
+				}
+			} catch (Exception e1) {
+				v.mostrarMensajeError(e1.getMessage());
+			}
+
+		}
+
+	}
 }

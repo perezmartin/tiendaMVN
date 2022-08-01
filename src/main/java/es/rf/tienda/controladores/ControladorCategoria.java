@@ -14,11 +14,11 @@ import es.rf.tienda.util.Validator;
 
 public class ControladorCategoria implements CategoriaDAO {
 
-	final String SELECT_ALL = "SELECT * FROM CATEGORIA";
-	final String SELECT_CATEGORIAS = "SELECT * FROM CATEGORIA WHERE ";
-	final String INSERT_CATEGORIA = "INSERT INTO CATEGORIA VALUES ";
-	final String UPDATE_CATEGORIA = "UPDATE CATEGORIA SET ";
-	final String DELETE_CATEGORIA = "DELETE FROM CATEGORIA WHERE ID_CATEGORIA = ";
+	private final String SELECT_ALL = "SELECT * FROM CATEGORIA";
+	private final String SELECT_CATEGORIAS = "SELECT * FROM CATEGORIA WHERE ";
+	private final String INSERT_CATEGORIA = "INSERT INTO CATEGORIA VALUES ";
+	private final String UPDATE_CATEGORIA = "UPDATE CATEGORIA SET ";
+	private final String DELETE_CATEGORIA = "DELETE FROM CATEGORIA WHERE ID_CATEGORIA = ";
 
 	@Override
 	public List<Categoria> listarTodo() throws Exception {
