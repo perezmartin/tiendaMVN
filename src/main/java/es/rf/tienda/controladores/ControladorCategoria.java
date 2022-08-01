@@ -30,18 +30,20 @@ public class ControladorCategoria implements CategoriaDAO {
 		String query = this.INSERT_CATEGORIA;
 
 		try {
-			if (c.isValid())
-				query = query + "(" + c.getId_categoria() + ",'" + c.getCat_nombre() + "','" + c.getId_categoria()
+			if (c != null && c.isValid()) {
+				query = query + "(" + c.getId_categoria() + ",'" + c.getCat_nombre() + "','" + c.getCat_descripcion()
 						+ "')";
 
-			int num = JDBC.getInstance().Ejecutar(query);
+				int num = JDBC.getInstance().Ejecutar(query);
 
-			if (num != 0)
-				return true;
-
+				if (num != 0)
+					return true;
+			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw (new Exception("Error! " + e.getMessage()));
-			// ErrorMessages.mostrarMensajeError(e.getMessage());
+			//ErrorMessages.mostrarMensajeError(e.getMessage());
+			
 		}
 		return false;
 
@@ -51,15 +53,15 @@ public class ControladorCategoria implements CategoriaDAO {
 	public boolean editar(Categoria c) throws Exception {
 		String query = this.UPDATE_CATEGORIA;
 		try {
-			if (c.isValid())
+			if (c != null && c.isValid()) {
 				query = query + "CAT_NOMBRE = '" + c.getCat_nombre() + "', CAT_DESCRIPCION = '" + c.getCat_descripcion()
 						+ "' WHERE ID_CATEGORIA = " + c.getId_categoria();
 
-			int num = JDBC.getInstance().Ejecutar(query);
+				int num = JDBC.getInstance().Ejecutar(query);
 
-			if (num != 0)
-				return true;
-
+				if (num != 0)
+					return true;
+			}
 		} catch (Exception e) {
 			throw (new Exception("Error! " + e.getMessage()));
 			// ErrorMessages.mostrarMensajeError(e.getMessage());
@@ -71,14 +73,14 @@ public class ControladorCategoria implements CategoriaDAO {
 	public boolean eliminar(int id) throws Exception {
 		String query = this.DELETE_CATEGORIA;
 		try {
-			if (id != 0)
+			if (id != 0) {
 				query = query + id;
 
-			int num = JDBC.getInstance().Ejecutar(query);
+				int num = JDBC.getInstance().Ejecutar(query);
 
-			if (num != 0)
-				return true;
-
+				if (num != 0)
+					return true;
+			}
 		} catch (Exception e) {
 			throw (new Exception("Error! " + e.getMessage()));
 			// ErrorMessages.mostrarMensajeError(e.getMessage());

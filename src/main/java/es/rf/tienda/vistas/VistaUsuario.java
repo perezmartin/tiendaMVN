@@ -16,15 +16,16 @@ import javax.swing.JTextField;
 
 import es.rf.tienda.dominio.Usuario;
 
-public class VistaUsuario extends JFrame {
+public class VistaUsuario extends JFrame implements InterfaceVista {
 
 	private static final long serialVersionUID = 1L;
 	private Usuario usuario;
+	private JFrame vistaAnterior;
 
 	public void iniciarVista() {
-		initComponents(); // inicio los componentes
-		setLocationRelativeTo(null); // centro la VistaSwing a la pantalla
-		setVisible(true); // hago visible la VistaSwing
+		initComponents();
+		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 
 	private void initComponents() {
@@ -62,7 +63,7 @@ public class VistaUsuario extends JFrame {
 			this.input_tipo_id.setText("");
 			this.input_user_dni.setText("");
 			this.input_user_fecAlta.setText("");
-			
+
 			this.setTitle("Agregar Usuario");
 			this.botonAceptar.setText("Agregar");
 
@@ -107,15 +108,6 @@ public class VistaUsuario extends JFrame {
 
 	}
 
-	public void volverALaVistaAnterior(JFrame vista) {
-		this.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				vista.setVisible(true);
-			}
-		});
-	}
-
 	public void setUsuario(Usuario user) {
 		this.usuario = user;
 	}
@@ -151,4 +143,21 @@ public class VistaUsuario extends JFrame {
 	private JPanel panelElementos = new JPanel();
 
 	private GridLayout gridElementos = new GridLayout(6, 1);
+
+	@Override
+	public void agregarEventoCierre() {
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				if (vistaAnterior != null)
+					vistaAnterior.setVisible(true);
+			}
+		});
+	}
+
+	@Override
+	public void setVistaAnterior(JFrame vista) {
+		this.vistaAnterior = vista;
+
+	}
 }

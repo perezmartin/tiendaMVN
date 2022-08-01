@@ -10,6 +10,8 @@ public class JDBC {
 
 	private static Connection conn;
 	private static JDBC instancia;
+	
+	// DEBERIA ESTAR EN UN ARCHIVO XML???
 	private static final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
 	private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
 	private static final String USUARIO = "alumno";

@@ -43,7 +43,7 @@ public class ControladorPrincipal {
 			public void actionPerformed(ActionEvent e) {
 				v.dispose();
 
-				vListadoCategorias.volverALaVistaAnterior(v);
+				vListadoCategorias.setVistaAnterior(v);
 				try {
 					vListadoCategorias.agregarListado(cc.listarTodo());
 				} catch (Exception e1) {
@@ -66,7 +66,7 @@ public class ControladorPrincipal {
 				v.dispose();
 
 				// vListadoUsuarios.agregarListado();
-				vListadoUsuarios.volverALaVistaAnterior(v);
+				vListadoUsuarios.setVistaAnterior(v);
 				vListadoUsuarios.iniciarVista();
 			}
 
@@ -78,7 +78,7 @@ public class ControladorPrincipal {
 			public void actionPerformed(ActionEvent e) {
 				v.dispose();
 
-				vCategoria.volverALaVistaAnterior(v);
+				vCategoria.setVistaAnterior(v);
 				vCategoria.iniciarVista();
 
 			}
@@ -91,7 +91,7 @@ public class ControladorPrincipal {
 			public void actionPerformed(ActionEvent e) {
 				v.dispose();
 
-				vUsuario.volverALaVistaAnterior(v);
+				vUsuario.setVistaAnterior(v);
 				vUsuario.iniciarVista();
 			}
 
@@ -109,7 +109,7 @@ public class ControladorPrincipal {
 			if (e.getClickCount() == 2) {
 				JList<Categoria> lista = (JList<Categoria>) e.getComponent();
 
-				vCategoria.volverALaVistaAnterior(vListadoCategorias);
+				vCategoria.setVistaAnterior(v);
 				
 				vCategoria.setCategoria(new Categoria(lista.getSelectedValue().getId_categoria(),
 						lista.getSelectedValue().getCat_nombre(), lista.getSelectedValue().getCat_descripcion()));
@@ -152,9 +152,9 @@ public class ControladorPrincipal {
 		public void actionPerformed(ActionEvent e) {
 			vListadoCategorias.dispose();
 
-			vCategoria.volverALaVistaAnterior(vListadoCategorias);
-			vCategoria.setCategoria(null);
+			vCategoria.setVistaAnterior(vListadoCategorias);			
 			vCategoria.iniciarVista();
+			
 		}
 
 	}

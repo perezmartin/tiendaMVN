@@ -20,25 +20,35 @@ import javax.swing.JScrollPane;
 
 import es.rf.tienda.dominio.Categoria;
 
-public class VistaListadoCategorias extends JFrame {
+public class VistaListadoCategorias extends JFrame implements InterfaceVista {
 	private static final long serialVersionUID = 1L;
+
+	private JFrame vistaAnterior;
 
 	public VistaListadoCategorias() {
 		super.setTitle("Listado Categorias");
 	}
 
 	public void iniciarVista() {
-
-		initComponents(); // inicio los componentes
-		setLocationRelativeTo(null); // centro la VistaSwing a la pantalla
-		setVisible(true); // hago visible la VistaSwing
+		agregarEventoCierre();
+		initComponents();
+		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 
-	public void volverALaVistaAnterior(JFrame vista) {
+	@Override
+	public void setVistaAnterior(JFrame vista) {
+		this.vistaAnterior = vista;
+
+	}
+
+	@Override
+	public void agregarEventoCierre() {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				vista.setVisible(true);
+				if (vistaAnterior != null)
+					vistaAnterior.setVisible(true);
 			}
 		});
 	}

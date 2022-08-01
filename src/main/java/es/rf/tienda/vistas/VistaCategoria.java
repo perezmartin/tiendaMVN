@@ -18,15 +18,17 @@ import javax.swing.JTextField;
 
 import es.rf.tienda.dominio.Categoria;
 
-public class VistaCategoria extends JFrame {
+public class VistaCategoria extends JFrame implements InterfaceVista {
 
 	private static final long serialVersionUID = 1L;
 	private Categoria categoria;
+	private JFrame vistaAnterior;
 
 	public void iniciarVista() {
-		initComponents(); // inicio los componentes
-		setLocationRelativeTo(null); // centro la VistaSwing a la pantalla
-		setVisible(true); // hago visible la VistaSwing
+		initComponents();
+		setLocationRelativeTo(null);
+		setVisible(true);
+		agregarEventoCierre();
 	}
 
 	private void initComponents() {
@@ -55,7 +57,7 @@ public class VistaCategoria extends JFrame {
 			this.panelBotones.add(botonEliminar);
 
 		} else {
-			
+
 			this.input_cat_id.setText("");
 			this.input_cat_nombre.setText("");
 			this.textoDescripcion.setText("");
@@ -121,15 +123,20 @@ public class VistaCategoria extends JFrame {
 		this.botonAceptar.addActionListener(al);
 	}
 
-	public void volverALaVistaAnterior(JFrame vista) {
+	@Override
+	public void agregarEventoCierre() {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				
-				vista.setVisible(true);
-
+				if (vistaAnterior != null)
+					vistaAnterior.setVisible(true);
 			}
 		});
+	}
+
+	@Override
+	public void setVistaAnterior(JFrame v) {
+		this.vistaAnterior = v;
 	}
 
 	// declaracion de variables

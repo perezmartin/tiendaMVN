@@ -37,7 +37,7 @@ public class ControladorCategoriaTest {
 			System.out.println(cc.buscar(new Categoria(0, "", "Todo tipo de celulares")));
 			System.out.println("-----------------------------------");
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 	}
 

@@ -20,8 +20,9 @@ import javax.swing.JScrollPane;
 
 import es.rf.tienda.dominio.Usuario;
 
-public class VistaListadoUsuarios extends JFrame {
+public class VistaListadoUsuarios extends JFrame implements InterfaceVista {
 	private static final long serialVersionUID = 1L;
+	private JFrame vistaAnterior;
 
 	public VistaListadoUsuarios() {
 		super.setTitle("Listado Usuarios");
@@ -34,7 +35,7 @@ public class VistaListadoUsuarios extends JFrame {
 		setVisible(true); // hago visible la VistaSwing
 	}
 
-	public void volverALaVistaAnterior(JFrame vista) {
+	private void volverALaVistaAnterior(JFrame vista) {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -104,5 +105,22 @@ public class VistaListadoUsuarios extends JFrame {
 	private JLabel label = new JLabel();
 
 	private JList<Usuario> listaUsuarios = new JList<Usuario>();
+
+	@Override
+	public void agregarEventoCierre() {
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				if (vistaAnterior != null)
+					vistaAnterior.setVisible(true);
+			}
+		});
+	}
+
+	@Override
+	public void setVistaAnterior(JFrame vista) {
+		this.vistaAnterior = vista;
+
+	}
 
 }
