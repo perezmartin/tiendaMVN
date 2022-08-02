@@ -39,7 +39,7 @@ public class Categoria {
 		if (!Validator.cumpleLongitud(cat_descripcion, LONGITUD_MIN_CAT_DESCRIPCION, LONGITUD_MAX_CAT_DESCRIPCION)) {
 			throw new DomainException(ErrorMessages.CATERR_004);
 		}
-		if (!Validator.isAlfanumeric(cat_nombre)) {
+		if (!Validator.isAlfanumeric(cat_descripcion)) {
 			throw new DomainException(ErrorMessages.CATERR_005);
 		}
 		return true;
