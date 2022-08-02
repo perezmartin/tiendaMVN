@@ -43,7 +43,7 @@ public class VistaCategoria extends JFrame implements InterfaceVista {
 
 			this.setTitle("Editar Categoria");
 
-			this.botonAceptar.setText("Editar");
+			this.botonEditar.setText("Editar");
 
 			this.botonEliminar.setText("Eliminar");
 			this.botonEliminar.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
@@ -55,7 +55,8 @@ public class VistaCategoria extends JFrame implements InterfaceVista {
 			this.input_cat_nombre.setText(categoria.getCat_nombre());
 			this.textoDescripcion.setText(categoria.getCat_descripcion());
 
-			this.panelBotones.add(botonAceptar);
+			this.panelBotones.removeAll();
+			this.panelBotones.add(botonEditar);
 			this.panelBotones.add(botonEliminar);
 
 		} else {
@@ -67,9 +68,10 @@ public class VistaCategoria extends JFrame implements InterfaceVista {
 			this.textoDescripcion.setText("");
 
 			this.setTitle("Agregar Categoria");
-			this.botonAceptar.setText("Agregar");
+			this.botonCrear.setText("Agregar");
 
-			this.panelBotones.add(botonAceptar);
+			this.panelBotones.removeAll();
+			this.panelBotones.add(botonCrear);
 
 		}
 
@@ -77,8 +79,11 @@ public class VistaCategoria extends JFrame implements InterfaceVista {
 		this.cat_nombre.setText("NOMBRE");
 		this.cat_descripcion.setText("DESCRIPCION");
 
-		this.botonAceptar.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
-		this.botonAceptar.setBackground(Color.GREEN);
+		this.botonCrear.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+		this.botonCrear.setBackground(Color.GREEN);
+		
+		this.botonEditar.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+		this.botonEditar.setBackground(Color.GREEN);
 
 		this.panelElementos.setLayout(gridElementos);
 
@@ -119,8 +124,12 @@ public class VistaCategoria extends JFrame implements InterfaceVista {
 		this.categoria = new Categoria(id, nombre, des);
 	}
 
-	public void clickEnBotonAceptar(ActionListener al) {
-		this.botonAceptar.addActionListener(al);
+	public void clickEnBotonCrear(ActionListener al) {
+		this.botonCrear.addActionListener(al);
+	}
+	
+	public void clickEnBotonEditar(ActionListener al) {
+		this.botonEditar.addActionListener(al);
 	}
 
 	public void clickEnBotonEliminar(ActionListener al) {
@@ -145,7 +154,8 @@ public class VistaCategoria extends JFrame implements InterfaceVista {
 
 	// declaracion de variables
 
-	private JButton botonAceptar = new JButton();
+	private JButton botonCrear = new JButton();
+	private JButton botonEditar = new JButton();
 	private JButton botonEliminar = new JButton();
 
 	private JLabel cat_id = new JLabel();

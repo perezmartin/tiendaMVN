@@ -54,6 +54,7 @@ public class ControladorPrincipal {
 		this.clickEnNuevaCategoria = new ClickEnNuevaCategoria();
 		this.clickListadoCategorias = new ClickListadoCategorias();
 		this.clickEnEliminarSeleccionados = new ClickEnEliminarSeleccionados();
+		this.clickEnBotonListadoCategorias = new ClickEnBotonListadoCategorias();
 
 	}
 
@@ -61,6 +62,18 @@ public class ControladorPrincipal {
 		v.clickEnBotonListadoCategorias(clickEnBotonListadoCategorias);
 
 		v.clickEnBotonNuevaCategoria(clickEnNuevaCategoria);
+
+		vListadoCategorias.clickEnListadoCategorias(clickListadoCategorias);
+
+		vListadoCategorias.clickEnBotonNueva(clickEnNuevaCategoria);
+
+		vListadoCategorias.clickEnEliminar(clickEnEliminarSeleccionados);
+
+		vCategoria.clickEnBotonEditar(clickEnEditar);
+
+		vCategoria.clickEnBotonEliminar(clickEnEliminar);
+		
+		vCategoria.clickEnBotonCrear(clickEnCrear);
 
 		/*
 		 * v.clickEnBotonListadoUsuarios(new ActionListener() {
@@ -96,12 +109,6 @@ public class ControladorPrincipal {
 
 			vListadoCategorias.setVistaAnterior(v);
 
-			vListadoCategorias.clickEnListadoCategorias(clickListadoCategorias);
-
-			vListadoCategorias.clickEnBotonNueva(clickEnNuevaCategoria);
-
-			vListadoCategorias.clickEnEliminar(clickEnEliminarSeleccionados);
-
 			try {
 
 				vListadoCategorias.agregarListado(cc.listarTodo());
@@ -129,10 +136,6 @@ public class ControladorPrincipal {
 				Categoria c = vListadoCategorias.obtenerSeleccionado();
 
 				vCategoria.setCategoria(new Categoria(c.getId_categoria(), c.getCat_nombre(), c.getCat_descripcion()));
-
-				vCategoria.clickEnBotonAceptar(clickEnEditar);
-
-				vCategoria.clickEnBotonEliminar(clickEnEliminar);
 
 				vCategoria.iniciarVista();
 			}
@@ -200,8 +203,6 @@ public class ControladorPrincipal {
 			vCategoria.setVistaAnterior(v);
 
 			vCategoria.setCategoria(null);
-
-			vCategoria.clickEnBotonAceptar(clickEnCrear);
 
 			vCategoria.iniciarVista();
 		}
