@@ -4,13 +4,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
+
+import es.rf.tienda.exception.DAOException;
 
 public class JDBC {
 
 	private static Connection conn;
 	private static JDBC instancia;
-	
+
 	// DEBERIA ESTAR EN UN ARCHIVO XML???
 	private static final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
 	private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -31,7 +34,7 @@ public class JDBC {
 
 	}
 
-	private void conexion() throws Exception{
+	private void conexion() throws Exception {
 		try {
 
 			Class.forName(JDBC_DRIVER);
@@ -39,11 +42,11 @@ public class JDBC {
 			conn = DriverManager.getConnection(URL, USUARIO, PASSWORD);
 
 		} catch (Exception e) {
-			throw (new Exception("Error! : " + e.getMessage()));
+			throw (new Exception(ErrorMessages.CONNERR_001));
 		}
 	}
 
-	public int Ejecutar(String sql) throws Exception {
+	public int Ejecutar(String sql) throws SQLException, DAOException {
 
 		System.out.println("Ejecutar: " + sql);
 		Statement stm = null;
@@ -54,8 +57,11 @@ public class JDBC {
 			stm = conn.createStatement();
 			retorno = stm.executeUpdate(sql);
 
-		} catch (SQLException e) {
-			throw (new Exception("error en " + sql));
+		} catch (SQLIntegrityConstraintViolationException e) {
+			throw (new SQLException(ErrorMessages.DAOERR_007));
+
+		} catch (Exception e) {
+			throw (e);
 		} finally {
 			// closeStatement(stm);
 		}
@@ -63,7 +69,7 @@ public class JDBC {
 
 	}
 
-	public ResultSet EjecutarQuery(String sql) throws Exception {
+	public ResultSet EjecutarQuery(String sql) throws SQLException, DAOException {
 
 		System.out.println("EjecutarQuery: " + sql);
 		Statement stm = null;
@@ -74,8 +80,10 @@ public class JDBC {
 			stm = conn.createStatement();
 			retorno = stm.executeQuery(sql);
 
-		} catch (SQLException e) {
-			throw (new Exception("error en " + sql));
+		} catch (SQLIntegrityConstraintViolationException e) {
+			throw (new SQLException(ErrorMessages.DAOERR_007));
+		} catch (Exception e) {
+			throw (e);
 		} finally {
 			// closeStatement(stm);
 		}

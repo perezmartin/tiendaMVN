@@ -87,6 +87,10 @@ public class VistaPrincipal extends JFrame {
 		this.botonNuevaDireccion.addActionListener(al);
 	}
 
+	public int mostrarMensajeConfirmacion(String msj) {
+		return JOptionPane.showConfirmDialog(this, msj, "¿Eliminar?", JOptionPane.YES_NO_CANCEL_OPTION);
+	}
+	
 	public void mostrarMensajeError(String msj) {
 		JOptionPane.showMessageDialog(this, msj, "Error", JOptionPane.ERROR_MESSAGE);
 	}

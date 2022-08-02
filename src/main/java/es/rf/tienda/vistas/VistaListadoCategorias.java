@@ -104,9 +104,11 @@ public class VistaListadoCategorias extends JFrame implements InterfaceVista {
 		this.listaCategorias.addMouseListener(al);
 	}
 
-	public int[] obtenerSeleccionados() {
-		return this.listaCategorias.getSelectedIndices();
-
+	public Categoria obtenerSeleccionado() {
+		return this.listaCategorias.getSelectedValue();
+	}
+	public List<Categoria> obtenerSeleccionados() {
+		return this.listaCategorias.getSelectedValuesList();
 	}
 
 	private JPanel panelTop = new JPanel();

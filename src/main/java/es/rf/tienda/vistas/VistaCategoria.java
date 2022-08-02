@@ -17,6 +17,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import es.rf.tienda.dominio.Categoria;
+import es.rf.tienda.exception.DAOException;
+import es.rf.tienda.util.ErrorMessages;
 
 public class VistaCategoria extends JFrame implements InterfaceVista {
 
@@ -58,6 +60,8 @@ public class VistaCategoria extends JFrame implements InterfaceVista {
 
 		} else {
 
+			this.input_cat_id.setEditable(true);
+
 			this.input_cat_id.setText("");
 			this.input_cat_nombre.setText("");
 			this.textoDescripcion.setText("");
@@ -92,7 +96,7 @@ public class VistaCategoria extends JFrame implements InterfaceVista {
 
 	}
 
-	public Categoria getCategoria() throws Exception {
+	public Categoria getCategoria() throws DAOException {
 
 		Categoria c = new Categoria();
 
@@ -100,8 +104,8 @@ public class VistaCategoria extends JFrame implements InterfaceVista {
 			c.setId_categoria(Integer.parseInt(input_cat_id.getText()));
 			c.setCat_nombre(input_cat_nombre.getText());
 			c.setCat_descripcion(textoDescripcion.getText());
-		} catch (Exception e) {
-			throw new Exception("Error al convertir");
+		} catch (NumberFormatException e) {
+			throw new DAOException(ErrorMessages.DAOERR_006);
 		}
 
 		return c;
@@ -120,7 +124,7 @@ public class VistaCategoria extends JFrame implements InterfaceVista {
 	}
 
 	public void clickEnBotonEliminar(ActionListener al) {
-		this.botonAceptar.addActionListener(al);
+		this.botonEliminar.addActionListener(al);
 	}
 
 	@Override

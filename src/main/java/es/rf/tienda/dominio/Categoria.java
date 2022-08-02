@@ -1,13 +1,19 @@
 package es.rf.tienda.dominio;
 
+import es.rf.tienda.exception.DomainException;
+import es.rf.tienda.util.ErrorMessages;
 import es.rf.tienda.util.Validator;
 
 public class Categoria {
 
 	private int id_categoria;
-
 	private String cat_nombre;
 	private String cat_descripcion;
+
+	private final int LONGITUD_MAX_CAT_NOMBRE = 50;
+	private final int LONGITUD_MIN_CAT_NOMBRE = 3;
+	private final int LONGITUD_MAX_CAT_DESCRIPCION = 200;
+	private final int LONGITUD_MIN_CAT_DESCRIPCION = 3;
 
 	public Categoria() {
 
@@ -20,8 +26,23 @@ public class Categoria {
 
 	}
 
-	public boolean isValid() {
-		return !Validator.isVacio(cat_nombre) && id_categoria > 0 && !Validator.isVacio(cat_descripcion);
+	public boolean isValid() throws DomainException {
+		if (Validator.isVacio(cat_nombre) && id_categoria < 0 && Validator.isVacio(cat_descripcion)) {
+			throw new DomainException(ErrorMessages.CATERR_001);
+		}
+		if (!Validator.cumpleLongitud(cat_nombre, LONGITUD_MIN_CAT_NOMBRE, LONGITUD_MAX_CAT_NOMBRE)) {
+			throw new DomainException(ErrorMessages.CATERR_002);
+		}
+		if (!Validator.isAlfanumeric(cat_nombre)) {
+			throw new DomainException(ErrorMessages.CATERR_003);
+		}
+		if (!Validator.cumpleLongitud(cat_descripcion, LONGITUD_MIN_CAT_DESCRIPCION, LONGITUD_MAX_CAT_DESCRIPCION)) {
+			throw new DomainException(ErrorMessages.CATERR_004);
+		}
+		if (!Validator.isAlfanumeric(cat_nombre)) {
+			throw new DomainException(ErrorMessages.CATERR_005);
+		}
+		return true;
 	}
 
 	public int getId_categoria() {
